@@ -1,0 +1,9 @@
+<div>
+  <nz-input-group nzSize="large" [nzSuffix]="icon">
+    <input #searchInput type="text" nz-input placeholder="Search" [(ngModel)]="value"/>
+  </nz-input-group>
+
+  <ng-template #icon>
+    <i nz-icon nzType="search"></i>
+  </ng-template>
+</div>

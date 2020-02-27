@@ -15,6 +15,11 @@
       "app",
       "camelCase"
     ],
+    "variable-name": [
+      true,
+      "allow-leading-underscore",
+      "allow-snake-case"
+    ],
     "component-selector": [
       true,
       "element",
@@ -28,7 +33,7 @@
     "interface-name": false,
     "max-classes-per-file": false,
     "max-line-length": [
-      true,
+      false,
       140
     ],
     "member-access": false,
@@ -68,7 +73,7 @@
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [
-      true,
+      false,
       "single"
     ],
     "trailing-comma": false,
