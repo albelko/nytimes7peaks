@@ -1,7 +1,7 @@
 <article class="home-article">
   <div nz-row nzType="flex" nzJustify="space-between">
 
-    <div nz-col nzSpan="16">
+    <div class="home-article-desc" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="16">
       <a [routerLink]="['/articles/' + article._id.split('/')[3]]">
         <h2 nz-title>
           {{ article.headline.main }}
@@ -21,7 +21,7 @@
       </a>
     </div>
 
-    <div class="home-article-thumb"nz-col nzSpan="8">
+    <div class="home-article-thumb" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="8">
       <img *ngIf="article.multimedia[0]" [src]="'https://static01.nyt.com/' + article.multimedia[0].url" width="250" style="border-radius: 4px">
     </div>
   </div>

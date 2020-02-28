@@ -9,15 +9,10 @@
 
 .detail-bottom {
   padding: 0 24px 24px 24px;
+  overflow-x: hidden;
+}
 
-  .detail-bottom-parsed {
-    font-size: 14px;
-    overflow-x: hidden;
-
-    img {
-      max-width: 100%;
-      margin-bottom: 16px!important;
-    }
-  }
+img {
+  max-width: 100%;
 }
 

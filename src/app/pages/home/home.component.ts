@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
     page: 0
   };
   public sortValues = [ 'relevance', 'newest', 'oldest' ];
+  public isError = false;
+  public errorMessage = null;
+
 
 
   constructor(private articleService: ArticleService,
@@ -53,6 +56,9 @@ export class HomeComponent implements OnInit {
       (response) => {
         console.log('Articles collection', response);
 
+        this.isError = false;
+        this.errorMessage = null;
+
         if (this.queryParams.page > 0) {
           response.map(item => this.articles.push(item));
         } else {
@@ -61,6 +67,10 @@ export class HomeComponent implements OnInit {
       },
       (error) => {
         console.error(error);
+
+        this.isLoading = false;
+        this.isError = true;
+        this.errorMessage = error;
       },
       () => {
         this.isLoading = false;

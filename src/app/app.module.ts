@@ -13,7 +13,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DetailComponent } from '@pages/detail/detail.component';
 import { HomeComponent } from '@pages/home/home.component';
-import { SearchComponent } from '@pages/search/search.component';
 import { NotFoundComponent } from '@pages/not-found/not-found.component';
 import { HomeArticleComponent } from '@components/home-article/home-article.component';
 import { AboutComponent } from '@pages/about/about.component';
@@ -28,7 +27,6 @@ registerLocaleData(en);
     AppComponent,
     DetailComponent,
     HomeComponent,
-    SearchComponent,
     NotFoundComponent,
     HomeArticleComponent,
     AboutComponent,

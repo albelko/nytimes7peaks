@@ -15,6 +15,8 @@ export class DetailComponent implements OnInit {
   public theHtmlString: any;
   public article: IArticle;
   public isLoading = false;
+  public isError = false;
+  public errorMessage = null;
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -30,11 +32,18 @@ export class DetailComponent implements OnInit {
         (response) => {
           console.log('Article detail', response);
 
+          this.isError = false;
+          this.errorMessage = null;
+
           this.article = response;
           this.parseArticle(this.article.web_url);
         },
         (error) => {
           console.error(error);
+
+          this.isError = true;
+          this.errorMessage = error;
+          this.isLoading = false;
         },
         () => {
           this.isLoading = false;

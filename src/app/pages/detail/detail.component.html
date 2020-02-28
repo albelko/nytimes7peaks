@@ -1,43 +1,54 @@
 <nz-spin [nzSpinning]="isLoading">
   <div class="detail-content">
-    <nz-skeleton *ngIf="isLoading"></nz-skeleton>
+    <nz-result *ngIf="isError"
+               [nzStatus]="errorMessage?.status"
+               [nzTitle]="errorMessage?.status"
+               [nzSubTitle]="errorMessage?.statusText">
+      <div nz-result-extra>
+        <h2>Refresh the page after 30 seconds.</h2>
+      </div>
+    </nz-result>
 
-    <nz-page-header *ngIf="!isLoading" nzBackIcon [nzTitle]="article?.headline?.main" [nzSubtitle]="article?.abstract">
-      <nz-page-header-content>
-        <nz-descriptions [nzColumn]="1">
-          <nz-descriptions-item nzTitle="Source" [nzSpan]="1">
-            {{ article?.source }}
-          </nz-descriptions-item>
+    <div *ngIf="!isError">
+      <nz-skeleton *ngIf="isLoading"></nz-skeleton>
 
-          <nz-descriptions-item nzTitle="Web url (new tab)" [nzSpan]="1">
-            <a [href]="article?.web_url" target="_blank">{{ article?.web_url }}</a>
-          </nz-descriptions-item>
+      <nz-page-header *ngIf="!isLoading" nzBackIcon [nzTitle]="article?.headline?.main" [nzSubtitle]="article?.abstract">
+        <nz-page-header-content>
+          <nz-descriptions [nzColumn]="1">
+            <nz-descriptions-item nzTitle="Source" [nzSpan]="1">
+              {{ article?.source }}
+            </nz-descriptions-item>
 
-          <nz-descriptions-item nzTitle="Author" [nzSpan]="1">
-            {{ article?.byline?.original }}
-          </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Web url (new tab)" [nzSpan]="1">
+              <a [href]="article?.web_url" target="_blank">{{ article?.web_url }}</a>
+            </nz-descriptions-item>
 
-          <nz-descriptions-item nzTitle="Word count" [nzSpan]="1">
-            {{ article?.word_count}}
-          </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Author" [nzSpan]="1">
+              {{ article?.byline?.original }}
+            </nz-descriptions-item>
 
-          <nz-descriptions-item nzTitle="Publication date" [nzSpan]="1">
-            {{ article?.pub_date | date:'longDate'}}
-          </nz-descriptions-item>
+            <nz-descriptions-item nzTitle="Word count" [nzSpan]="1">
+              {{ article?.word_count}}
+            </nz-descriptions-item>
 
-          <nz-descriptions-item nzTitle="Keywords" [nzSpan]="1">
-            <br>
-            <nz-tag *ngFor="let keyword of article?.keywords">
-              {{ keyword?.value }}
-            </nz-tag>
-          </nz-descriptions-item>
-        </nz-descriptions>
-      </nz-page-header-content>
-    </nz-page-header>
+            <nz-descriptions-item nzTitle="Publication date" [nzSpan]="1">
+              {{ article?.pub_date | date:'longDate'}}
+            </nz-descriptions-item>
 
-    <div class="detail-bottom">
-      <nz-divider *ngIf="!isLoading" nzText="Article has been parsed using Mercury Web Parser"></nz-divider>
-      <div [innerHTML]="theHtmlString?.content"></div>
+            <nz-descriptions-item nzTitle="Keywords" [nzSpan]="1">
+              <br>
+              <nz-tag *ngFor="let keyword of article?.keywords">
+                {{ keyword?.value }}
+              </nz-tag>
+            </nz-descriptions-item>
+          </nz-descriptions>
+        </nz-page-header-content>
+      </nz-page-header>
+
+      <div class="detail-bottom">
+        <nz-divider *ngIf="!isLoading" nzText="Article has been parsed using Mercury Web Parser"></nz-divider>
+        <div [innerHTML]="theHtmlString?.content"></div>
+      </div>
     </div>
   </div>
 </nz-spin>

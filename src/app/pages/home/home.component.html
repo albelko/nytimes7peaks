@@ -2,12 +2,12 @@
   <nz-spin [nzSpinning]="isLoading">
     <div class="home-top">
       <div nz-row nzType="flex" nzJustify="space-around">
-        <div nz-col nzSpan="16">
+        <div nz-col nzXs="24" nzSm="24" nzMd="16" nzLg="16" nzXl="16">
           <app-home-search [value]="queryParams.q" (valueUpdated)="onSearchValueUpdated($event)">
           </app-home-search>
         </div>
 
-        <div nz-col nzSpan="7" nzOffset="1">
+        <div nz-col nzXs="24" nzSm="24" nzMd="8" nzLg="8" nzXl="8">
           <app-home-sort [value]="queryParams.sort" (valueUpdated)="onSortValueUpdated($event)">
           </app-home-sort>
         </div>
@@ -17,13 +17,22 @@
 
 
     <div class="home-content">
-      <div class="search-results">
+      <nz-result *ngIf="isError"
+                 [nzStatus]="errorMessage?.status"
+                 [nzTitle]="errorMessage?.status"
+                 [nzSubTitle]="errorMessage?.statusText">
+        <div nz-result-extra>
+          <h2>Refresh the page after 30 seconds.</h2>
+        </div>
+      </nz-result>
+
+      <div *ngIf="!isError" class="search-results">
         <app-home-article [article]="article" *ngFor="let article of articles">
         </app-home-article>
       </div>
 
       <div class="home-more">
-        <button nz-button nzType="primary" *ngIf="articles.length && !isLoading" (click)="loadMoreArticles()">
+        <button nz-button nzType="primary" *ngIf="articles.length && !isLoading && !isError" (click)="loadMoreArticles()">
           Load more <i nz-icon nzType="caret-down" nzTheme="fill"></i>
         </button>
       </div>

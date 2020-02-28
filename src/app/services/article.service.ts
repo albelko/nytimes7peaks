@@ -18,6 +18,7 @@ export class ArticleService {
     .set('page', '0')
     .set('q', '')
     .set('sort', 'relevance')
+    .set('fq', 'document_type:("article")')
     .set('api-key', environment.nytimesApiKey);
 
 
